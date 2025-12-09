@@ -96,6 +96,41 @@ $ tree
     ...
 
 34 directories, 19 files
+
+
+[Tue Dec 09 11:40:21] albert@albert-VirtualBox:~/MyProjects/Sandbox/ApartmentPredictorProject/ApartmentPredictor/src (master)
+$ tree
+.
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           └── apartment_predictor
+│   │               ├── ApartmentPredictorApplication.java
+│   │               ├── model
+│   │               │   ├── Apartment.java
+│   │               │   ├── Owner.java
+│   │               │   ├── Reviewer.java
+│   │               │   └── Review.java
+│   │               ├── repository
+│   │               │   ├── ApartmentRepository.java
+│   │               │   └── ReviewRepository.java
+│   │               └── service
+│   │                   ├── ApartmentService.java
+│   │                   └── ReviewService.java
+│   └── resources
+│       ├── application.properties
+│       ├── static
+│       └── templates
+└── test
+    └── java
+        └── com
+            └── example
+                └── apartment_predictor
+                    └── ApartmentPredictorApplicationTests.java
+
+17 directories, 11 files
+
 ```
 
 ## Data Model
@@ -158,6 +193,19 @@ public class Owner {
     private int qtyDaysAsOwner;
 }
 ```
+
+```java
+public class Review {
+
+    private String id;
+    private String title;
+    private String content;
+    private int rating;
+    private LocalDate reviewDate;
+}
+```
+
+
 
 ### UML
 
@@ -226,6 +274,10 @@ todo
 
 todo
 
+### Command LIne Runner
+
+todo
+
 ### Tests JUnit
 
 todo
@@ -252,16 +304,15 @@ Config `applcations properties`
 
 ```properties
 spring.application.name=ApartmentPredictor
-#spring.datasource.url=jdbc:h2:tcp://localhost/~/MyProjects/Sandbox/ApartmentPredictorProject/db/rapartmentpredictordb
+# config db params connection
 spring.datasource.url=jdbc:h2:/home/albert/MyProjects/Sandbox/ApartmentPredictorProject/db/apartmentpredictordb
-#spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=albert
-#spring.datasource.username=sa
 spring.datasource.password=1234
-#spring.datasource.password=
+# config db param
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=none
 #spring.jpa.hibernate.ddl-auto=create
 spring.jpa.hibernate.ddl-auto=update
 ```
