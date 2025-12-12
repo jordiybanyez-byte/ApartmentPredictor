@@ -1,4 +1,4 @@
-# Before annotatons: one to many .xml
+# Before annotations: one to many .xml
 
 > Before <mark>annotations</mark> were common, the `Apartment–Review` relationship was defined in `ORM XM`L (Hibernate `*.hbm.xml` or JPA `orm.xml`), and Spring only wired the `ORM laye`r (`SessionFactory`/`EntityManagerFactory`, **transactions**) via its own XML. 
 > 
@@ -9,7 +9,6 @@
 For classic Hibernate (pre‑JPA style), you would have something like this:
 
 - `Apartment.hbm.xml` would map the table and the one‑to‑many collection.
-
 - `Review.hbm.xml` would map the table and the many‑to‑one back to `Apartment`.
 
 Conceptually (simplified):
@@ -29,7 +28,6 @@ Conceptually (simplified):
         <one-to-many class="com.example.Review"/>
     </set>
 </class>
-
 ```
 
 **Review.hbm.xml**
@@ -47,22 +45,20 @@ Conceptually (simplified):
                  column="apartment_fk"
                  not-null="true"/>
 </class>
-
 ```
 
 > This yields exactly the same schema as your annotated example: a `review.apartment_fk` foreign key pointing to `apartment.id`.
 
 ## JPA orm.xml variant
 
-If instead of pure Hibernate XML you used JPA with XML mappings, the idea was similar: define the entities in Java as plain POJOs, then describe table/relationship mapping in `META-INF/orm.xml`. There you would configure:
+If instead of pure Hibernate XML you used JPA with XML mappings, the idea was similar: define the entities in Java as plain <mark>POJOs</mark>, then describe table/relationship mapping in `META-INF/orm.xml`. 
+
+There you would configure:
 
 - An `<entity class="...Apartment">`:
-  
-  -  with an `<one-to-many>` referencing `Review`.
-
+  - with an `<one-to-many>` referencing `Review`.
 - An `<entity class="...Review">`:
-  
-  -  with a `<many-to-one>` and `<join-column name="apartment_fk"/>`.
+  - with a `<many-to-one>` and `<join-column name="apartment_fk"/>`.
 
 Again, same relational model, just expressed in JPA XML instead of annotations.
 
@@ -71,15 +67,12 @@ Again, same relational model, just expressed in JPA XML instead of annotations.
 Spring before `Boot`:
 
 - Defined `DataSource`, `LocalSessionFactoryBean` (for Hibernate) or `LocalContainerEntityManagerFactoryBean` (for JPA) in Spring XML, pointing to `Apartment.hbm.xml` / `Review.hbm.xml` or `persistence.xml`/`orm.xml`.
-
-- Defined a transaction manager bean and DAOs/services that injected `SessionFactory` or `EntityManager`.
+- Defined a **transaction manager bean and DAOs/services** that injected `SessionFactory` or `EntityManager`.
 
 So to “create the relationship without annotations” for `Apartment`–`Review`:
 
-- Entities: plain Java classes with fields and getters/setters, no `@Entity`, `@OneToMany`, etc.
-
-- Relationship: defined in Hibernate `*.hbm.xml` or JPA `orm.xml`.
-
+- <mark>Entities</mark>: plain Java classes with fields and getters/setters, no `@Entity`, `@OneToMany`, etc.
+- <mark>Relationship</mark>: defined in Hibernate `*.hbm.xml` or JPA `orm.xml`.
 - Spring: only responsible for wiring the ORM configuration and transactions, not for modeling the association itself.
 
 ## References:
