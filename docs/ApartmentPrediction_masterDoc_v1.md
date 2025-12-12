@@ -10,6 +10,12 @@
 - Spring Boot Guides / Academy: https://spring.io/guides / https://spring.academy/courses
 - Quickstart: https://spring.io/quickstart
 
+Historical notes:
+
+- [Spring Framework – albertprofe wiki](https://albertprofe.dev/spring/spring-basics.html)
+
+- [JPA Before Annotatons one-to-many xml](https://github.com/AlbertProfe/ApartmentPredictor/blob/master/docs/appends/JPA_Before_Annotatons:_one-to-many-xml.md)
+
 ### Product Goal
 
 > Use this small housing-price dataset to train a regularized regression model that handles multicollinearity, then expose predictions through a Spring Boot REST API and a React form UI where users input area, bedrooms, bathrooms, furnishing, and road proximity for instant price estimates.
